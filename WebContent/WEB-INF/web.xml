@@ -16,6 +16,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>sc</servlet-name>
-    <url-pattern>/*</url-pattern>
+   <!--  <url-pattern>/*</url-pattern>e1-->
+    <url-pattern>*.sc</url-pattern>  <!-- 拦截所有.sc请求交给SimpleController处理 -->
   </servlet-mapping>
 </web-app>
