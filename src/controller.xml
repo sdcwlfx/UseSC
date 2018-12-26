@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sc-configuration>
 	
+	<!-- e3声明拦截器节点 ，定义了拦截器类型和拦截方法-->
+	<interceptor name="log" class="water.ustc.interceptor.LogInterceptor" predo="preAction" afterdo="afterAction"></interceptor>
+	
+	
+	
 	<controller>
 		<action name="login" class="water.ustc.action.LoginAction" method="handleLogin">
-			<result name="success" type="forward" value="pages/welcome.jsp"></result>
+			
+			<!--e3 使用log拦截器拦截对login的请求 -->
+			<interceptor-ref name="log"></interceptor-ref>
+			
+			<!-- e4<result name="success" type="forward" value="pages/welcome.jsp"></result> -->
+			<result name="success" type="forward" value="pages/success_view.xml"></result>
 			<result name="failure" type="redirect" value="pages/failure.jsp"></result>
 			<!--login some results -->
 		</action>
 		
 		<action name="register" class="water.ustc.action.RegisterAction" method="handleRegister">
+		
+		    <!-- e3使用log拦截器拦截 对register请求-->
+		    <interceptor-ref name="log"></interceptor-ref>
+		    
 			<result name="success" type="forward" value="pages/welcome.jsp"></result>
 			<!-- register some results -->
 		</action>
