@@ -34,7 +34,7 @@
 						</input>
 						<br/>
 					</xsl:for-each>
-					
+			
 					<input type="submit">
 						<xsl:attribute name="name">
 							<xsl:value-of select="view/body/form/buttonView/name"></xsl:value-of>

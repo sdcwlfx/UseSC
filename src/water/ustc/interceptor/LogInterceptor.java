@@ -36,8 +36,6 @@ public class LogInterceptor {
 		//TODO 记录请求的action名字
 		actionName=str;
 		System.out.println("UseSC中preActioin action名字："+actionName);
-		
-		
 		preDate = sdfs.format(System.currentTimeMillis()) ;//访问开始时间
 	}
 	
@@ -53,21 +51,15 @@ public class LogInterceptor {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
-		
-		
+		}	
 	}
 	
 	//写日志log.xml文件
 	private void writeLog() throws Exception {
-		
 		File file=new File(path);//读取日志文件
 		Document document=null;//xml的Document对象
 		Element elementLog=null;//根元素
 		Element elementAction=null;//二级节点actoin
-		
 		//如果文件存在，获得根节点
 		if(file.exists()) {
 			SAXReader reader=new SAXReader();
@@ -81,21 +73,16 @@ public class LogInterceptor {
 			elementLog=document.addElement("log");//添加根元素
 			//elementAction=elementLog.addElement("action");//添加二级元素action
 		}
-		
 		//根节点log下添加action子节点
 		elementAction=elementLog.addElement("action");//添加二级元素action
 		Element elementName=elementAction.addElement("name");//添加name节点
 		elementName.addText(actionName);//为name节点添加文本
-		
 		Element elementStartTime=elementAction.addElement("s-time");//添加访问开始时间节点
 		elementStartTime.addText(preDate);
-		
 		Element elementEndTime=elementAction.addElement("e-time");//添加访问结束时间节点
 		elementEndTime.addText(afterDate);
-		
 		Element elementActionName=elementAction.addElement("result");//添加返回结果节点
 		elementActionName.addText(actionResult);
-		
 		//创建一种输出格式，每个节点元素可自动换行
 		OutputFormat outputFormat=OutputFormat.createPrettyPrint();
 		outputFormat.setEncoding("UTF-8");
