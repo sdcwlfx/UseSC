@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import sc.ustc.dao.BaseDAO;
+import sc.ustc.dao.Conversation;
 import water.ustc.bean.UserBean;
 
 public class UserDAO extends BaseDAO {
@@ -70,6 +71,34 @@ public class UserDAO extends BaseDAO {
 		}
 		return null;
 	}
+	
+	
+	//e6 依据用户对象从数据库中查找，找到该用户，则返回true,否则返回false
+	public Object query(UserBean userBean) {
+		System.out.println("UserBean对象的用户名和密码： "+userBean.getUserName()+"  "+userBean.getUserPass());
+		ResultSet rSet=(ResultSet)Conversation.selectObject(userBean);
+		try {
+			if(rSet!=null&&rSet.next()) {
+				System.out.println("找到了该用户！！！");
+//				String userId=rSet.getString(0);
+//				String userName=rSet.getString(1);
+				return true;
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+		
+	}
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public boolean update(String sql) {

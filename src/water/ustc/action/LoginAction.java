@@ -23,10 +23,10 @@ public class LoginAction {
 		String result="failure";
 		UserBean userBean=new UserBean();
 		userBean.setUserName(userName);
-		userBean.setUserPass(userPassword);
+		//userBean.setUserPass(userPassword);
 		//result=userBean.signIn();
 		System.out.println("UseSC中HandleLogin中参数为：  "+userName+"  "+userPassword);
-		boolean signInResult=userBean.signIn();
+		boolean signInResult=userBean.signIn(userPassword);
 		if(signInResult) {
 			result="success";
 		}

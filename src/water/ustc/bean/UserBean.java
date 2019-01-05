@@ -2,13 +2,42 @@ package water.ustc.bean;
 
 import com.sun.xml.internal.bind.v2.model.core.ID;
 
+import jdk.nashorn.internal.ir.Flags;
+import net.sf.cglib.proxy.Enhancer;
 import water.ustc.dao.UserDAO;
+import water.ustc.lazyLoad.LazyLoadProxy;
 
 public class UserBean {
 	
 	private String userId;
 	private String userName;
+	//userPass需要懒加载
 	private String userPass;
+	
+	
+	public UserBean() {
+		
+	}
+	
+	public UserBean(String userName) {
+		this.userName=userName;
+		//this.userPass=userPassProxy();
+		
+	}
+	
+	
+	
+	
+	//代理机制实现懒加载
+	@SuppressWarnings("static-access")
+	public Object getUserPassLazy() {
+		Enhancer enhancer=new Enhancer();
+		enhancer.setSuperclass(Object.class);
+		return enhancer.create(Object.class,new LazyLoadProxy(this));
+	}
+	
+	
+	
 	
 	
 	
@@ -33,6 +62,38 @@ public class UserBean {
 		}
 		//return success;
 	}
+	
+	/**
+	 * e6
+	 * @param userInputPass  用户输入密码
+	 * @return
+	 */
+	public boolean signIn(String userInputPass) {
+		UserDAO userDAO=new UserDAO();
+		Boolean isValid=(Boolean)userDAO.query(this);
+		//用户id有效
+		if(isValid) {
+			//比较密码
+			Object pass=getUserPassLazy();//从数据库中懒加载加载该用户密码
+			if(userInputPass.equals(pass.toString())) {
+				return true;
+			}else {
+				return false;
+			}
+		}else {
+			return false;
+		}
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
 
 
 
@@ -63,12 +124,13 @@ public class UserBean {
 	public String getUserPass() {
 		return userPass;
 	}
-
-
-
+	
 	public void setUserPass(String userPass) {
 		this.userPass = userPass;
 	}
+
+
+
 	
 	
 

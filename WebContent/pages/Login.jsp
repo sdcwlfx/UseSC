@@ -8,7 +8,7 @@
     <body>
         <div>
             <h3>请登录：</h3><br>
-            <form action="login.sc" name="loginForm">
+            <form action="login.sc" name="loginForm" method="POST">
             <div>账  号：<input type="text" name="userName" /></div>
             <div>密  码：<input type="password" name="userPassword" /></div>
             <div><input type="submit" name="login" value="登录" /></div>

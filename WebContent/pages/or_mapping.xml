@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OR-Mappings>
+	<jdbc>
+		<property>
+			<name>driver_class</name>
+			<!-- <value>org.postgresql.Driver</value> -->
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		
+		<property>
+			<name>url_path</name>
+			<!-- <value>jdbc:postgresql://localhost/mydatabase</value> -->
+			<value>jdbc:mysql://localhost:3306/j2eedb</value>
+		</property>
+		
+		<!--  <property>
+			<name>db_name</name>
+			<value>j2eedb</value>
+		</property>-->
+		
+		<property>
+			<name>db_username</name>
+			<value>root</value>
+		</property>
+		
+		<property>
+			<name>db_userpassword</name>
+			<value>admin</value>
+		</property>
+	</jdbc>
+	
+	<class name="water.ustc.bean.UserBean" table="user">
+		<property>
+			<name>userId</name>
+			<column>userId</column>
+			<type>String</type>
+			<lazy>false</lazy>
+		</property>
+		<property>
+			<name>userName</name>
+			<column>userName</column>
+			<type>String</type>
+			<lazy>false</lazy>
+		</property>
+		<property>
+			<name>userPass</name>
+			<column>userPassword</column>
+			<type>String</type>
+			<lazy>true</lazy>
+		</property>
+	</class>
+</OR-Mappings>
