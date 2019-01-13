@@ -10,7 +10,8 @@ import net.sf.cglib.proxy.LazyLoader;
 import sc.ustc.dao.Configuration;
 import water.ustc.bean.UserBean;
 
-//依据初始化userId的对象懒加载用户密码
+//依据初始化userName的对象懒加载用户密码，在属性表示懒加载时，select语句不获取该字段值，
+//在以后使用该属性时，再通过LazyLoadProxy执行一条sql语句从数据库中获取到该字段值
 public class LazyLoadProxy implements LazyLoader {
 	
 	private UserBean userBean;

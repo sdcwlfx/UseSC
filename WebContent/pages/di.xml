@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- e7 内省机制实现依赖注入-->
+<sc-di>
+	<bean id="dao" class="water.ustc.dao.UserDAO"></bean>
+	<bean id="user" class="water.ustc.bean.UserBean">
+		<field name="userDAO" bean-ref="dao"></field>
+	</bean>
+	<bean id="login" class="water.ustc.action.LoginAction">
+		<field name="userBean" bean-ref="user"></field>
+	</bean>
+
+</sc-di>

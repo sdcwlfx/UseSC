@@ -12,6 +12,7 @@ public class LoginAction {
 	
 	String userName;//用户名
 	String password;//密码
+	private UserBean userBean;
 	
 	/**
 	 * 处理登陆逻辑
@@ -21,7 +22,7 @@ public class LoginAction {
 	 */
 	public String handleLogin(String userName,String userPassword) {
 		String result="failure";
-		UserBean userBean=new UserBean();
+		//UserBean userBean=new UserBean();
 		userBean.setUserName(userName);
 		//userBean.setUserPass(userPassword);
 		//result=userBean.signIn();
@@ -32,6 +33,16 @@ public class LoginAction {
 		}
 		return result;
 	}
+
+	public UserBean getUserBean() {
+		return userBean;
+	}
+
+	public void setUserBean(UserBean userBean) {
+		this.userBean = userBean;
+	}
+	
+	
 	
 	
 	

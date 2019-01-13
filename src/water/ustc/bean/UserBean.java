@@ -13,6 +13,8 @@ public class UserBean {
 	private String userName;
 	//userPass需要懒加载
 	private String userPass;
+	//e7 依赖注入di.xml
+	private UserDAO userDAO;
 	
 	
 	public UserBean() {
@@ -64,12 +66,12 @@ public class UserBean {
 	}
 	
 	/**
-	 * e6
+	 * e6 懒加载
 	 * @param userInputPass  用户输入密码
 	 * @return
 	 */
 	public boolean signIn(String userInputPass) {
-		UserDAO userDAO=new UserDAO();
+		//UserDAO userDAO=new UserDAO();
 		Boolean isValid=(Boolean)userDAO.query(this);
 		//用户id有效
 		if(isValid) {
@@ -84,18 +86,17 @@ public class UserBean {
 			return false;
 		}
 		
-		
-		
-		
-		
-		
 	}
 	
 	
-	
-	
+	//e7 依赖注入di.xml
+	public UserDAO getUserDAO() {
+		return userDAO;
+	}
 
-
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
 
 	public String getUserId() {
 		return userId;
